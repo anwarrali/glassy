@@ -37,8 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
           config.about_text || defaultConfig.about_text;
 
         // Update contact email
-        document.getElementById("contactEmail").textContent =
-          config.contact_email || defaultConfig.contact_email;
+        const contactEmailEl = document.getElementById("contactEmail");
+        if (contactEmailEl) {
+          contactEmailEl.textContent =
+            config.contact_email || defaultConfig.contact_email;
+        }
       },
       mapToCapabilities: (config) => ({
         recolorables: [
