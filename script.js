@@ -1,6 +1,27 @@
 // DOMContentLoaded event listener
 document.addEventListener("DOMContentLoaded", () => {
+  const socialLinks = document.querySelectorAll(
+    '.social-link-item[target="_blank"]',
+  );
+
+  socialLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      // On mobile, sometimes the tap doesn't register properly
+      // This ensures the link opens
+      e.preventDefault();
+      const href = this.getAttribute("href");
+
+      // Open in new tab
+      window.open(href, "_blank");
+
+      // Fallback: if window.open is blocked, navigate directly
+      setTimeout(() => {
+        window.location.href = href;
+      }, 300);
+    });
+  });
   // Default configuration
+
   const defaultConfig = {
     hero_name: "Rand Khaled",
     hero_title: "IT Specialist | Software Engineering Student",
