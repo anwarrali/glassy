@@ -608,6 +608,43 @@ textarea:focus {
   stroke: #0f0f0f;
 }
 
+.social-links-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .social-links-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+.social-link-item {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  width: auto;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .social-link-item {
+    width: 100%;
+  }
+  .social-link-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .light-mode .social-link-item:hover {
+    background: rgba(0, 0, 0, 0.03);
+  }
+}
+
 .social-btn {
   width: 64px;
   height: 64px;
@@ -620,6 +657,7 @@ textarea:focus {
   color: inherit;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .light-mode .social-btn {
@@ -627,34 +665,45 @@ textarea:focus {
   border-color: rgba(0, 0, 0, 0.1);
 }
 
-.social-btn:hover {
-  background: #ffd600;
-  border-color: #ffd600;
-  color: #0f0f0f;
-  transform: translateY(-8px) scale(1.1);
-  box-shadow: 0 15px 30px rgba(255, 214, 0, 0.3);
+/* Hover effects only for desktop/hoverable devices */
+@media (hover: hover) {
+  .social-btn:hover {
+    background: #ffd600;
+    border-color: #ffd600;
+    color: #0f0f0f;
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 0 15px 30px rgba(255, 214, 0, 0.3);
+  }
+
+  .light-mode .social-btn:hover {
+    background: #ff8c00;
+    border-color: #ff8c00;
+    color: #ffffff;
+    box-shadow: 0 15px 30px rgba(255, 140, 0, 0.3);
+  }
+
+  .social-btn svg {
+    transition: transform 0.4s ease;
+  }
+
+  .social-btn:hover svg {
+    transform: scale(1.1);
+  }
 }
 
-.light-mode .social-btn:hover {
-  background: #ff8c00;
-  border-color: #ff8c00;
-  color: #ffffff;
-  box-shadow: 0 15px 30px rgba(255, 140, 0, 0.3);
-}
-
-.social-btn svg {
-  transition: transform 0.4s ease;
-}
-
-.social-btn:hover svg {
-  transform: scale(1.1);
-}
-
-@media (max-width: 640px) {
+/* Mobile specific resets to ensure links work smoothly */
+@media (max-width: 1024px) {
   .social-btn {
     width: 54px;
     height: 54px;
     border-radius: 14px;
+  }
+
+  /* Disable hover transform on mobile to avoid click issues */
+  .social-btn:hover,
+  .social-btn:active {
+    transform: none !important;
+    box-shadow: none !important;
   }
 }
 
